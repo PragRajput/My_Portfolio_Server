@@ -124,5 +124,5 @@ if (process.env.NODE_ENV !== 'production') {
   });
 }
 
-// Export for Vercel serverless
-export default app;
+// Export for Vercel serverless (CommonJS format)
+module.exports = app;
