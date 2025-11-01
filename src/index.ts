@@ -114,10 +114,15 @@ app.post('/api/send-email', async (req: Request, res: Response) => {
   }
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
-  console.log(`📧 Email endpoint: http://localhost:${PORT}/api/send-email`);
-  console.log(`🧪 Test endpoint: http://localhost:${PORT}/test`);
-  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
-});
+// Start server only for local development
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on http://localhost:${PORT}`);
+    console.log(`📧 Email endpoint: http://localhost:${PORT}/api/send-email`);
+    console.log(`🧪 Test endpoint: http://localhost:${PORT}/test`);
+    console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+  });
+}
+
+// Export for Vercel serverless
+export default app;
