@@ -114,8 +114,8 @@ app.post('/api/send-email', async (req: Request, res: Response) => {
   }
 });
 
-// Start server only for local development
-if (process.env.NODE_ENV !== 'production') {
+// Only start server if not running in serverless environment (Vercel)
+if (!process.env.VERCEL) {
   app.listen(PORT, () => {
     console.log(`🚀 Server running on http://localhost:${PORT}`);
     console.log(`📧 Email endpoint: http://localhost:${PORT}/api/send-email`);
